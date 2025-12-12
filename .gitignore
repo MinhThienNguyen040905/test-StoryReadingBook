@@ -1,0 +1,34 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+report-*.json
+
+# Environment variables
+.env
+
+# Test reports & screenshots
+allure-results/
+allure-report/
+screenshots/
+reports/
+
+# IDE / Editor settings
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build / cache
+dist/
+build/
+.cache/
+
+package-lock.json
