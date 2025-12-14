@@ -32,5 +32,40 @@ export const TEST_USERS = {
         username: 'validuser123',
         password: 'Password@123',
         confirmPassword: 'Password@123'
+    },
+    // THÊM MỚI CHO TC_REG_005
+    SHORT_USERNAME_USER: {
+        email: `test.shortuser${new Date().getTime()}@example.com`,
+        username: 'ab',  // Chỉ 2 ký tự – quá ngắn
+        password: 'Password@123',
+        confirmPassword: 'Password@123'
+    },
+    LONG_USERNAME_USER: {
+        email: `test.longuser${new Date().getTime()}@example.com`,
+        username: 'thisisaverylongusernameexceedingfiftycharacterslongtest123',  // 51 ký tự – quá dài
+        password: 'Password@123',
+        confirmPassword: 'Password@123'
+    },
+    // THÊM MỚI CHO TC_REG_007
+    WEAK_PASSWORD_USER: {
+        email: `test.weakpass${new Date().getTime()}@example.com`,
+        username: 'validuser123',
+        password: 'weakpass',  // 8 ký tự, chỉ chữ thường, không số, không ký tự đặc biệt
+        confirmPassword: 'weakpass'
+    },
+    // THÊM MỚI CHO TC_REG_008
+    MISMATCHED_PASSWORD_USER: {
+        email: `test.mismatch${new Date().getTime()}@example.com`,
+        username: 'validuser123',
+        password: 'Password@123',           // Mật khẩu chính
+        confirmPassword: 'Different@123'    // Không khớp
+    },
+    EXISTING_USERNAME_USER: {
+        email: `test.duplicateuser${new Date().getTime()}@example.com`,  // Email mới, không trùng
+        username: 'nguoidungmoi',  // Username đã tồn tại trong hệ thống
+        password: 'Password@123',
+        confirmPassword: 'Password@123'
     }
+
+
 };
