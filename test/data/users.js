@@ -19,5 +19,18 @@ export const TEST_USERS = {
         username: '',  // Username rỗng
         password: 'Password@123',
         confirmPassword: 'Password@123'
+    },
+    // THÊM MỚI CHO TC_REG_003
+    INVALID_CHARS_USERNAME_USER: {
+        email: `test.invalidchars${new Date().getTime()}@example.com`,
+        username: 'user@#!$',  // Chứa ký tự đặc biệt không hợp lệ
+        password: 'Password@123',
+        confirmPassword: 'Password@123'
+    },
+    INVALID_EMAIL_FORMAT_USER: {
+        email: `testuser${new Date().getTime()}`,  // Không có @ và domain
+        username: 'validuser123',
+        password: 'Password@123',
+        confirmPassword: 'Password@123'
     }
 };
