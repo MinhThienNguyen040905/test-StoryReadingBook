@@ -9,6 +9,7 @@ class RegisterPage extends Page {
     get inputPassword() { return $('~input_reg_password'); }
     get inputConfirmPassword() { return $('~input_reg_confirm_password'); }
     get btnSubmit() { return $('~btn_reg_submit'); }
+    get errorUsername() { return $('~error_reg_username'); }  // Thêm mới: Giả sử frontend có contentDescription cho error message (e.g., "Username is required")
 
     // Elements của Date Picker (Native Android)
     get btnDialogOk() { return $('id=android:id/button1'); } // Sửa thành ID chuẩn
@@ -17,13 +18,8 @@ class RegisterPage extends Page {
     get inputDateDialog() { return $('//android.widget.EditText'); }
 
     // 2. Actions
-    async goToLoginFromIntro() {
-        await this.linkGoToRegister.waitForDisplayed({ timeout: 15000 });
-        await this.linkGoToRegister.click();
-    }
-
     async goToRegisterPage() {
-        await this.linkGoToRegister.waitForDisplayed();
+        await this.linkGoToRegister.waitForDisplayed({ timeout: 15000 });
         await this.linkGoToRegister.click();
     }
 
@@ -49,13 +45,13 @@ class RegisterPage extends Page {
             await okButton.click();
         } else {
             // Trường hợp hy hữu: Nếu Compose không dùng widget.Button mà dùng TextView
-            // Ta thử tìm Text nào có chữ "OK" hoặc "Select"
-            console.log("⚠️ Không thấy widget.Button, thử tìm theo Text...");
+            // Ta thử tìm Text nào có chữ "OK" hoặc "Confirm" hoặc "Select"
+            console.log("❌ Không thấy widget.Button, thử tìm theo Text...");
             const textButton = await $('//*[@text="OK" or @text="Confirm" or @text="Select"]');
             if (await textButton.isDisplayed()) {
                 await textButton.click();
             } else {
-                throw new Error("❌ BÓ TAY: Không tìm thấy nút OK nào trong Date Picker!");
+                throw new Error("🚨 BỎ TAY: Không tìm thấy nút OK nào trong Date Picker!");
             }
         }
     }
@@ -68,7 +64,7 @@ class RegisterPage extends Page {
         await browser.keys(user.email);
         await this.hideKeyboard();
 
-        // Nhập Username
+        // Nhập Username (có thể rỗng cho test case invalid)
         await this.inputUsername.click();
         await this.pause(0.5);
         await browser.keys(user.username);
@@ -91,6 +87,11 @@ class RegisterPage extends Page {
 
         // Submit
         await this.btnSubmit.click();
+    }
+
+    async isErrorDisplayed() {  // Thêm mới: Check nếu error message hiển thị
+        await this.errorUsername.waitForDisplayed({ timeout: 5000 });
+        return await this.errorUsername.isDisplayed();
     }
 }
 

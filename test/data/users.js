@@ -13,5 +13,11 @@ export const TEST_USERS = {
         username: 'nguoidungmoi',
         password: 'Password@123', // Mật khẩu mạnh (Chữ hoa, thường, số, ký tự đặc biệt)
         confirmPassword: 'Password@123'
+    },
+    EMPTY_USERNAME_USER: {  // Thêm mới cho test case username empty
+        email: `test.emptyuser${new Date().getTime()}@example.com`,
+        username: '',  // Username rỗng
+        password: 'Password@123',
+        confirmPassword: 'Password@123'
     }
 };

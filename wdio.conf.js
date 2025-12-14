@@ -71,5 +71,17 @@ export const config = {
             await browser.saveScreenshot(filePath);
             console.log(`📸 Đã chụp màn hình lỗi: ${filePath}`);
         }
-    }
+    },
+
+    // Reset app trước mỗi test case để luôn về Intro screen
+    beforeEach: async function () {
+        console.log('🔄 Resetting app to initial state...');
+        await driver.reset(); // Cách mạnh nhất: xóa data và khởi động lại app như mới
+        // Nếu reset() chậm hoặc không hoạt động tốt, dùng cách sau:
+        // await driver.terminateApp('com.example.frontend');
+        // await driver.activateApp('com.example.frontend');
+
+        await browser.pause(6000); // Chờ app load xong Intro screen
+        console.log('✅ App ready at Intro screen');
+    },
 };

@@ -9,8 +9,14 @@ class LoginPage extends Page {
     get btnSubmit() { return $('~btn_login_submit'); }
 
     async goToLoginFromIntro() {
+        // Tự động swipe qua 3 màn hình Intro đầu để đến màn hình thứ 4
+        await this.swipeThroughIntroScreens(3); // Thường là 3 lần swipe
+
+        // Chờ và click nút Login trên màn hình Intro cuối
         await this.btnIntroLogin.waitForDisplayed({ timeout: 15000 });
         await this.btnIntroLogin.click();
+
+        console.log('-> Đã vào màn hình Login');
     }
 
     async login(email, password) {
