@@ -65,6 +65,13 @@ export const TEST_USERS = {
         username: 'nguoidungmoi',  // Username đã tồn tại trong hệ thống
         password: 'Password@123',
         confirmPassword: 'Password@123'
+    },
+    // THÊM MỚI CHO TC_REG_010
+    EXISTING_EMAIL_USER: {
+        email: 'existingemail@example.com',  // Email đã tồn tại trong hệ thống
+        username: `newuser${new Date().getTime()}`,  // Username mới để tránh trùng username
+        password: 'Password@123',
+        confirmPassword: 'Password@123'
     }
 
 
