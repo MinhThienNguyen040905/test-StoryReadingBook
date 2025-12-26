@@ -72,7 +72,13 @@ export const TEST_USERS = {
         username: `newuser${new Date().getTime()}`,  // Username mới để tránh trùng username
         password: 'Password@123',
         confirmPassword: 'Password@123'
-    }
+    },
+
+    ADMIN: {
+        email: 'admin1@gmail.com',
+        password: 'admin123', // Pass đúng
+        name: 'Admin User'
+    },
 
 
 };
